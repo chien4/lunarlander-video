@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Interactive Video Demo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #111;
+            color: #fff;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        video {
+            width: 100%;
+            border: 3px solid #333;
+            border-radius: 10px;
+            cursor: pointer;
+            background: black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Interactive Video Player</h1>
+    <div class="container">
+        <video src="vanilla.mp4" onclick="playOnly(this)" poster="thumb1.jpg"></video>
+        <video src="a2c-best.mp4" onclick="playOnly(this)" poster="thumb2.jpg"></video>
+        <video src="ppo-best.mp4" onclick="playOnly(this)" poster="thumb3.jpg"></video>
+        <video src="ea-best.mp4" onclick="playOnly(this)" poster="thumb4.jpg"></video>
+    </div>
+
+    <script>
+        function playOnly(clickedVideo) {
+            document.querySelectorAll('video').forEach(video => {
+                if (video !== clickedVideo) video.pause();
+            });
+            clickedVideo.play();
+        }
+    </script>
+</body>
+
+</html>
