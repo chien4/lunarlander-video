@@ -3,16 +3,27 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Interactive Video Demo</title>
+    <title>Lunar Lander Result Videos</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background: #111;
             color: #fff;
+            margin: 0;
+            padding: 20px;
         }
 
         h1 {
             text-align: center;
+            margin-bottom: 10px;
+        }
+
+        p.description {
+            text-align: center;
+            margin: 0 auto 30px auto;
+            font-size: 1.1em;
+            color: #ccc;
+            max-width: 900px;
         }
 
         .container {
@@ -20,26 +31,81 @@
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
             max-width: 1200px;
-            margin: 20px auto;
+            margin: 0 auto;
+        }
+
+        .video-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: #222;
+            border-radius: 10px;
+            padding: 10px;
+        }
+
+        .video-block h2 {
+            margin: 5px 0 10px;
+            font-size: 1.1em;
+        }
+
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            /* 直接指定正確比例 */
+            background: black;
+            border: 3px solid #333;
+            border-radius: 10px;
         }
 
         video {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            border: 3px solid #333;
-            border-radius: 10px;
+            height: 100%;
+            object-fit: cover;
+            /* 改成 cover 消除黑邊 */
             cursor: pointer;
-            background: black;
         }
     </style>
 </head>
 
 <body>
-    <h1>Interactive Video Player</h1>
+    <h1>Lunar Lander Result Videos</h1>
+    <p class="description">
+        The evaluation videos show the best hyperparameter setting for each model, based on highest average reward.
+    </p>
     <div class="container">
-        <video src="vanilla.mp4" onclick="playOnly(this)" poster="thumb1.jpg"></video>
-        <video src="a2c-best.mp4" onclick="playOnly(this)" poster="thumb2.jpg"></video>
-        <video src="ppo-best.mp4" onclick="playOnly(this)" poster="thumb3.jpg"></video>
-        <video src="ea-best.mp4" onclick="playOnly(this)" poster="thumb4.jpg"></video>
+
+        <div class="video-block">
+            <h2>Deep Q-Network (DQN)</h2>
+            <div class="video-wrapper">
+                <video src="vanilla.mp4" onclick="playOnly(this)"></video>
+            </div>
+        </div>
+
+        <div class="video-block">
+            <h2>Advantage Actor-Critic (A2C)</h2>
+            <div class="video-wrapper">
+                <video src="a2c-best.mp4" onclick="playOnly(this)"></video>
+            </div>
+        </div>
+
+        <div class="video-block">
+            <h2>Proximal Policy Optimization (PPO)</h2>
+            <div class="video-wrapper">
+                <video src="ppo-best.mp4" onclick="playOnly(this)"></video>
+            </div>
+        </div>
+
+        <div class="video-block">
+            <h2>Evolutionary Algorithm</h2>
+            <div class="video-wrapper">
+                <video src="ea-best.mp4" onclick="playOnly(this)"></video>
+            </div>
+        </div>
+
     </div>
 
     <script>
